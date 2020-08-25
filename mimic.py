@@ -1,3 +1,6 @@
+import random
+import sys
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -20,11 +23,7 @@ You can try adding in line breaks around 70 columns so the output looks
 better.
 """
 
-__author__ = "???"
-
-
-import random
-import sys
+__author__ = "Isaiah 'Taiko' Gay with help from Caldane from discord"
 
 
 def create_mimic_dict(filename):
@@ -45,8 +44,20 @@ def create_mimic_dict(filename):
                 "who" : ["knows"]
             }
     """
-    # +++your code here+++
-    pass
+    word_dict = {}
+
+    with open(filename, encoding='utf-8') as f:
+        previous_word = ''
+        for line in f:
+            words = line.split()
+            for i in range(len(words)):
+                words[i].lower()
+                if previous_word in word_dict:
+                    word_dict[previous_word].append(words[i])
+                else:
+                    word_dict[previous_word] = [words[i]]
+                previous_word = words[i]
+    return word_dict
 
 
 def print_mimic_random(mimic_dict, num_words):
@@ -58,8 +69,20 @@ def print_mimic_random(mimic_dict, num_words):
         - Randomly select a new word from the next-list
         - Repeat this process num_words times
     """
-    # +++your code here+++
-    pass
+    word = ''
+    story = ''
+    i = 0
+    while i < num_words:
+        if word in mimic_dict:
+            word = mimic_dict[word][random.randint(0, len(mimic_dict[word])-1)]
+            story += word + ' '
+        else:
+            word = ''
+            word = mimic_dict[word][random.randint(0, len(mimic_dict[word])-1)]
+            story += word + ' '
+        i += 1
+    print(story, end='')
+    return story
 
 
 def main(args):
