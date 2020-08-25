@@ -23,7 +23,7 @@ You can try adding in line breaks around 70 columns so the output looks
 better.
 """
 
-__author__ = "Isaiah 'Taiko' Gay with help from Caldane from discord"
+__author__ = "Isaiah Gay with help from Caldane from Discord"
 
 
 def create_mimic_dict(filename):
